@@ -9,8 +9,7 @@
 
 ---
 
-<img width="1113" height="403" alt="image" src="https://github.com/user-attachments/assets/3ce86101-db51-4a4a-a555-f9a4b9ac0f70" />
-
+<img width="1113" height="403" alt="image" src="https://github.com/user-attachments/assets/4956abb6-d948-4b85-a69c-13fb795d73ab" />
 
 ## ✨ Features
 
