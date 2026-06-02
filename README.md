@@ -9,6 +9,9 @@
 
 ---
 
+<img width="1113" height="403" alt="image" src="https://github.com/user-attachments/assets/587a649c-8fbc-4721-97ac-301684c0827d" />
+
+
 ## ✨ Features
 
 ### 📋 System Information
