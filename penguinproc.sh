@@ -74,7 +74,7 @@ echo "[ by: xav1ersys | github.com/xav1ersys ]"
 	echo "-all		   - Show all processes"
 	echo "-cpu	           - See central processing unit"
 	echo "-dashboard	   - See system panel"
-    	echo "-mram	           - View information about total and free ram memory"
+    echo "-mram	           - View information about total and free ram memory"
 	echo
 	echo "+===========================================================+"
 
