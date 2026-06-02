@@ -4,16 +4,6 @@ GREEN="\e[32m"
 RED="\e[31m"
 RESET="\e[0m"
 
-function starting() {
-
-	for x in $(seq 1 5)
-	do
-		echo "Starting... 💀"
-		sleep 1
-	done
-
-}
-
 function dashboard() {
 	echo -e "$GREEN=========================================================== $RESET"
 	echo -e "$GREEN 	      PAINEL - DASHBOARD DO SISTEMA                $RESET"
@@ -60,7 +50,6 @@ function cpu() {
         echo -e "Núcleos: $RED $CPU_CORES" $RESET
 }
 
-starting
 
 if [ $# -eq 0 -o $# -eq 1 -a "$1" = "-h" ]
 then
