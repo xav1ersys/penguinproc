@@ -63,7 +63,10 @@ function dashboard() {
 	echo -e "Kernel:        ${RED}$(uname -r)${RESET}"
 	echo -e "Architecture:  ${RED}$(uname -m)${RESET}"
 	echo -e "Uptime:        ${RED}$(uptime -p)${RESET}"
-
+	echo -e "Shell:         ${RED}$SHELL${RESET}"	
+	echo -e "IP Address:    ${RED}$(hostname -I | awk '{print $1}')${RESET}"
+	echo -e "Processes:     ${RED}$(ps -e --no-headers | wc -l)${RESET}"
+	echo -e "Users Online:  ${RED}$(who | wc -l)${RESET}"
 }
 
 function m_ram() {
@@ -143,3 +146,4 @@ then
 else 
 	$0
 fi
+                                                                                        
