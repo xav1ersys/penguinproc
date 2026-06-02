@@ -6,7 +6,7 @@ RESET="\e[0m"
 
 function dashboard() {
 	echo -e "$GREEN=========================================================== $RESET"
-	echo -e "$GREEN 	      PAINEL - DASHBOARD DO SISTEMA                $RESET"
+	echo -e "$GREEN 	        PAINEL - DASHBOARD DO SISTEMA                $RESET"
 	echo -e "$GREEN=========================================================== $RESET"
 	
 	echo -e "User: $RED $(who) $RESET"
