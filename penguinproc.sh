@@ -75,15 +75,15 @@ function m_ram() {
 	echo -e "${GREEN}              M_RAM - RANDOM ACCESS MEMORY                 ${RESET}"
 	echo -e "${GREEN}===========================================================${RESET}"
 	
-	RAM_TOTAL_KB=$(grep "MemTotal" /proc/meminfo | tr -s ' ' | cut -d' ' -f2)
-	RAM_LIVRE_KB=$(grep "MemAvailable" /proc/meminfo | tr -s ' ' | cut -d' ' -f2)
+	RAM_TOTAL_KB=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
+	RAM_LIVRE_KB=$(awk '/MemAvailable/ {print $2}' /proc/meminfo)
 	
-	RAM_TOTAL=$(expr $RAM_TOTAL_KB / 1024)
-	RAM_LIVRE=$(expr $RAM_LIVRE_KB / 1024)
-	RAM_USADA=$(expr $RAM_TOTAL - $RAM_LIVRE)
+	RAM_TOTAL=$((RAM_TOTAL_KB / 1024))
+	RAM_LIVRE=$((RAM_LIVRE_KB / 1024))
+	RAM_USADA=$((RAM_TOTAL - RAM_LIVRE))
 	
 	echo -e "Total:         ${RED}${RAM_TOTAL}MB${RESET}"
-	echo -e "Used:         ${RED}${RAM_USADA}MB${RESET}"
+	echo -e "Used:          ${RED}${RAM_USADA}MB${RESET}"
 
 }
 
@@ -96,17 +96,17 @@ function cpu() {
 	# Removendo espaços extras do modelo da CPU para não quebrar o alinhamento
 	CPU_MODEL=$(grep "model name" /proc/cpuinfo | head -1 | cut -d: -f2 | sed 's/^ *//')
 	CPU_FREQ=$(grep "cpu MHz" /proc/cpuinfo | head -1 | cut -d: -f2 | sed 's/^ *//')	
-	CPU_CORES=$(grep -c ^processor /proc/cpuinfo)
+	CPU_CORES=$(nproc)
 
 	echo -e "Model:         ${RED}${CPU_MODEL}${RESET}"
-	echo -e "Cores:       	${RED}${CPU_CORES}${RESET}"
+	echo -e "Cores:         ${RED}${CPU_CORES}${RESET}"
 	echo -e "Frequency:     ${RED}${CPU_FREQ} MHz${RESET}"
 
 }
 
 startup
 
-if [ $# -eq 0 ] || [ $# -eq 1 -a "$1" = "-h" ]
+if [[ $# -eq 0 || ( $# -eq 1 && "$1" == "-h" ) ]]
 then
 	echo "░▒▓███████▓▒░░▒▓████████▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓███████▓▒░░▒▓███████▓▒░░▒▓███████▓▒░ ░▒▓██████▓▒░ ░▒▓██████▓▒░  "
 	echo "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ "
@@ -129,21 +129,21 @@ then
 	echo
 	echo "+===========================================================+"
 
-elif [ $# -eq 1 -a "$1" = "-all" ] 
+elif [[ $# -eq 1 && "$1" == "-all" ]]
 then
 	dashboard
 	m_ram
 	cpu
-elif [ $# -eq 1 -a "$1" = "-cpu" ] 
+elif [[ $# -eq 1 && "$1" == "-cpu" ]]
 then
 	cpu
-elif [ $# -eq 1 -a "$1" = "-mram" ] 
+elif [[ $# -eq 1 && "$1" == "-mram" ]]
 then
 	m_ram
-elif [ $# -eq 1 -a "$1" = "-dashboard" ] 
+elif [[ $# -eq 1 && "$1" == "-dashboard" ]]
 then
 	dashboard
-else 
-	$0
+else
+	echo -e "${RED}Opção inválida. Use -h para ver as opções.${RESET}"
+	exit 1
 fi
-                                                                                        
